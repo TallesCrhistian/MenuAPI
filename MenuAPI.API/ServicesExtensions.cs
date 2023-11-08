@@ -1,4 +1,14 @@
-﻿using Microsoft.OpenApi.Models;
+﻿using MenuAPI.Business;
+using MenuAPI.Business.Interfaces;
+using MenuAPI.Data;
+using MenuAPI.Data.Repository;
+using MenuAPI.Data.Repository.Interfaces;
+using MenuAPI.Data.WorkUnit;
+using MenuAPI.Data.WorkUnit.Interfaces;
+using MenuAPI.Services;
+using MenuAPI.Services.Interfaces;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.OpenApi.Models;
 
 namespace MenuAPI.API
 {
@@ -6,30 +16,38 @@ namespace MenuAPI.API
     {
         public static IServiceCollection AddDatabase(this IServiceCollection services, IConfiguration iConfiguration)
         {
-            //services.AddDbContext<AppDbContext>(x => x.UseNpgsql(iConfiguration.GetConnectionString("DefaultConnection"))
-            //    .EnableSensitiveDataLogging()
-            //    .LogTo(Console.WriteLine, LogLevel.Information));
+            services.AddDbContext<AppDbContext>(x => x.UseNpgsql(iConfiguration.GetConnectionString("DefaultConnection"))
+                .EnableSensitiveDataLogging()
+                .LogTo(Console.WriteLine, LogLevel.Information));
 
             return services;
         }
 
         public static IServiceCollection AddServices(this IServiceCollection services)
         {
+            services.AddScoped<IAdressServices, AdressServices>();
+
             return services;
         }
 
         public static IServiceCollection AddBusiness(this IServiceCollection services)
         {
+            services.AddScoped<IAdressBusiness, AdressBusiness>();
+
             return services;
         }
 
         public static IServiceCollection AddRepository(this IServiceCollection services)
         {
+            services.AddScoped<IBaseRepository, BaseRepository>();
+
             return services;
         }
 
         public static IServiceCollection WorkUnit(this IServiceCollection services)
         {
+            services.AddScoped<IWorkUnit, WorkUnit>();
+
             return services;
         }
 

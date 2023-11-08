@@ -1,4 +1,5 @@
-﻿using MenuAPI.Shared.DTOs;
+﻿using MenuAPI.Services.Interfaces;
+using MenuAPI.Shared.DTOs;
 using MenuAPI.Shared.ViewModels.Adress;
 using Microsoft.AspNetCore.Mvc;
 
@@ -110,29 +111,29 @@ namespace MenuAPI.API.Controllers
             return StatusCode(serviceResponseDTO.StatusCode, serviceResponseDTO);
         }
 
-        /// <summary>
-        /// List Adress.
-        /// </summary>
-        /// <remarks>
-        /// </remarks>
-        /// <param name="adressCreateViewModel">Object for List a Adress.</param>
-        /// <returns></returns>
-        /// <response code="200">Adress List successfully</response>
-        /// <response code="400">Return errors of validation</response>
-        /// <response code="500">Return errors case occur</response>
-        /// <response code="404">Adress not found.</response>
-        [ProducesResponseType(typeof(AdressCreateViewModel), StatusCodes.Status200OK)]
-        [ProducesResponseType(StatusCodes.Status400BadRequest)]
-        [ProducesResponseType(StatusCodes.Status404NotFound)]
-        [ProducesResponseType(typeof(ProblemDetails), StatusCodes.Status500InternalServerError)]
-        [HttpPut]
-        public async Task<IActionResult> List(AdressListViewModel adressListViewModel)
+        ///// <summary>
+        ///// List Adress.
+        ///// </summary>
+        ///// <remarks>
+        ///// </remarks>
+        ///// <param name="adressCreateViewModel">Object for List a Adress.</param>
+        ///// <returns></returns>
+        ///// <response code="200">Adress List successfully</response>
+        ///// <response code="400">Return errors of validation</response>
+        ///// <response code="500">Return errors case occur</response>
+        ///// <response code="404">Adress not found.</response>
+        //[ProducesResponseType(typeof(AdressCreateViewModel), StatusCodes.Status200OK)]
+        //[ProducesResponseType(StatusCodes.Status400BadRequest)]
+        //[ProducesResponseType(StatusCodes.Status404NotFound)]
+        //[ProducesResponseType(typeof(ProblemDetails), StatusCodes.Status500InternalServerError)]
+        //[HttpPut]
+        //public async Task<IActionResult> List(AdressListViewModel adressListViewModel)
 
-        {
-            ServiceResponseDTO<List<AdressViewModel>> serviceResponseDTO = await _iAdressServices.List(adressListViewModel);
+        //{
+        //    ServiceResponseDTO<List<AdressViewModel>> serviceResponseDTO = await _iAdressServices.List(adressListViewModel);
 
-            return StatusCode(serviceResponseDTO.StatusCode, serviceResponseDTO);
-        }
+        //    return StatusCode(serviceResponseDTO.StatusCode, serviceResponseDTO);
+        //}
 
     }
 }

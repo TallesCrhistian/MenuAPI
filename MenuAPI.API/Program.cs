@@ -1,4 +1,5 @@
 using MenuAPI.API;
+using MenuAPI.Utils.MappingProfiles;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -10,6 +11,7 @@ builder.Services.AddRepository();
 builder.Services.AddBusiness();
 builder.Services.AddServices();
 builder.Services.AddControllers();
+builder.Services.AddAutoMapper(typeof(MappingProfile));
 
 var app = builder.Build();
 
