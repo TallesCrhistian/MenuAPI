@@ -1,6 +1,7 @@
 ﻿using MenuAPI.Services.Interfaces;
 using MenuAPI.Shared.DTOs;
 using MenuAPI.Shared.ViewModels.Adress;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace MenuAPI.API.Controllers
@@ -30,6 +31,7 @@ namespace MenuAPI.API.Controllers
         [ProducesResponseType(typeof(AdressViewModel), StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         [ProducesResponseType(typeof(ProblemDetails), StatusCodes.Status500InternalServerError)]
+        [Authorize]
         [HttpPost]
         public async Task<IActionResult> Create([FromBody] AdressCreateViewModel adressCreateViewModel)
 
