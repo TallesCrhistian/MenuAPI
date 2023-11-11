@@ -1,5 +1,6 @@
 using MenuAPI.API;
 using MenuAPI.Utils.MappingProfiles;
+using Microsoft.AspNetCore.Diagnostics.HealthChecks;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -12,6 +13,7 @@ builder.Services.AddBusiness();
 builder.Services.AddServices();
 builder.Services.AddControllers();
 builder.Services.AddAutoMapper(typeof(MappingProfile));
+builder.Services.AddHealthCheck(builder.Configuration);
 
 var app = builder.Build();
 
@@ -23,6 +25,13 @@ if (app.Environment.IsDevelopment())
 }
 
 app.UseHttpsRedirection();
+
+app.UseHealthChecks("/HelthCheks", new HealthCheckOptions
+{
+    Predicate = _ => true,
+});
+
+app.UseHealthChecksUI(options => { options.ApiPath = "/HelthCheks-UI"; });
 
 app.UseAuthorization();
 

@@ -27,7 +27,7 @@ namespace MenuAPI.API.Controllers
         /// <response code="200">Adress create successfully</response>
         /// <response code="400">Return errors of validation</response>
         /// <response code="500">Return errors case occur</response>
-        [ProducesResponseType(typeof(AdressCreateViewModel), StatusCodes.Status200OK)]
+        [ProducesResponseType(typeof(AdressViewModel), StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         [ProducesResponseType(typeof(ProblemDetails), StatusCodes.Status500InternalServerError)]
         [HttpPost]
@@ -50,7 +50,7 @@ namespace MenuAPI.API.Controllers
         /// <response code="400">Return errors of validation</response>
         /// <response code="500">Return errors case occur</response>
         /// <response code="404">Adress not found.</response>
-        [ProducesResponseType(typeof(AdressCreateViewModel), StatusCodes.Status200OK)]
+        [ProducesResponseType(typeof(AdressViewModel), StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
         [ProducesResponseType(typeof(ProblemDetails), StatusCodes.Status500InternalServerError)]
@@ -74,7 +74,7 @@ namespace MenuAPI.API.Controllers
         /// <response code="400">Return errors of validation</response>
         /// <response code="500">Return errors case occur</response>
         /// <response code="404">Adress not found.</response>
-        [ProducesResponseType(typeof(AdressCreateViewModel), StatusCodes.Status200OK)]
+        [ProducesResponseType(typeof(AdressViewModel), StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
         [ProducesResponseType(typeof(ProblemDetails), StatusCodes.Status500InternalServerError)]
@@ -82,7 +82,7 @@ namespace MenuAPI.API.Controllers
         public async Task<IActionResult> Update([FromHeader] Guid id, [FromBody] AdressUpdateViewModel adressUpdateViewModel)
 
         {
-            ServiceResponseDTO<AdressViewModel> serviceResponseDTO = await _iAdressServices.Update(adressUpdateViewModel);
+            ServiceResponseDTO<AdressViewModel> serviceResponseDTO = await _iAdressServices.Update(adressUpdateViewModel, id);
 
             return StatusCode(serviceResponseDTO.StatusCode, serviceResponseDTO);
         }
@@ -98,7 +98,7 @@ namespace MenuAPI.API.Controllers
         /// <response code="400">Return errors of validation</response>
         /// <response code="500">Return errors case occur</response>
         /// <response code="404">Adress not found.</response>
-        [ProducesResponseType(typeof(AdressCreateViewModel), StatusCodes.Status200OK)]
+        [ProducesResponseType(typeof(AdressViewModel), StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
         [ProducesResponseType(typeof(ProblemDetails), StatusCodes.Status500InternalServerError)]

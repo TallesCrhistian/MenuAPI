@@ -8,6 +8,6 @@ namespace MenuAPI.Services.Interfaces
         Task<ServiceResponseDTO<AdressViewModel>> Create(AdressCreateViewModel adressCreateViewModel);
         Task<ServiceResponseDTO<AdressViewModel>> Delete(Guid id);
         Task<ServiceResponseDTO<AdressViewModel>> Read(Guid id);
-        Task<ServiceResponseDTO<AdressViewModel>> Update(AdressUpdateViewModel adressUpdateViewModel);
+        Task<ServiceResponseDTO<AdressViewModel>> Update(AdressUpdateViewModel adressUpdateViewModel, Guid id);
     }
 }

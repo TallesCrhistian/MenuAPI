@@ -7,6 +7,6 @@ namespace MenuAPI.Business.Interfaces
         Task<AdressDTO> Create(AdressDTO adressDTO);
         Task<AdressDTO> Delete(Guid id);
         Task<AdressDTO> Read(Guid id);
-        Task<AdressDTO> Update(AdressDTO adressDTO);
+        Task<AdressDTO> Update(AdressDTO adressDTO, Guid id);
     }
 }

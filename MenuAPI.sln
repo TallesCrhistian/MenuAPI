@@ -11,11 +11,16 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MenuAPI.Shared", "MenuAPI.S
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MenuAPI.Utils", "MenuAPI.Utils\MenuAPI.Utils.csproj", "{449AD6B9-B380-4EE2-82D2-5299088DAF40}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MenuAPI.Services", "MenuAPI.Services\MenuAPI.Services.csproj", "{034574F6-809F-44F5-87E8-FF7D12C188E6}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MenuAPI.Services", "MenuAPI.Services\MenuAPI.Services.csproj", "{034574F6-809F-44F5-87E8-FF7D12C188E6}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MenuAPI.Data", "MenuAPI.Data\MenuAPI.Data.csproj", "{811245DA-8BF7-4DF9-B7C0-00EED4D6EB08}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MenuAPI.Data", "MenuAPI.Data\MenuAPI.Data.csproj", "{811245DA-8BF7-4DF9-B7C0-00EED4D6EB08}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MenuAPI.Business", "MenuAPI.Business\MenuAPI.Business.csproj", "{8918E290-FDBD-4004-90B8-0BF4CB98EEAA}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MenuAPI.Business", "MenuAPI.Business\MenuAPI.Business.csproj", "{8918E290-FDBD-4004-90B8-0BF4CB98EEAA}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{729D68C5-9840-423D-B78E-FB3603505349}"
+	ProjectSection(SolutionItems) = preProject
+		docker-compose.yml = docker-compose.yml
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

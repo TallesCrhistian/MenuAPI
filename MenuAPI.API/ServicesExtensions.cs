@@ -23,9 +23,21 @@ namespace MenuAPI.API
             return services;
         }
 
+        public static IServiceCollection AddHealthCheck(this IServiceCollection services, IConfiguration iConfiguration)
+        {
+            services.AddHealthChecks()
+                .AddNpgSql(iConfiguration.GetConnectionString("DefaultConnection"), name: "Postgres");
+
+            services.AddHealthChecksUI()
+                  .AddInMemoryStorage();
+
+            return services;
+        }
+
         public static IServiceCollection AddServices(this IServiceCollection services)
         {
             services.AddScoped<IAdressServices, AdressServices>();
+            services.AddScoped<IEnterpriseServices, EnterpriseServices>();
 
             return services;
         }
@@ -33,6 +45,7 @@ namespace MenuAPI.API
         public static IServiceCollection AddBusiness(this IServiceCollection services)
         {
             services.AddScoped<IAdressBusiness, AdressBusiness>();
+            services.AddScoped<IEnterpriseBusiness, EnterpriseBusiness>();
 
             return services;
         }

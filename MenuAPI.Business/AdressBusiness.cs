@@ -19,7 +19,7 @@ namespace MenuAPI.Business
 
         public async Task<AdressDTO> Create(AdressDTO adressDTO)
         {
-            adressDTO.CreatedAt = DateTime.Now;
+            adressDTO.CreatedAt = DateTime.Now.ToUniversalTime();
 
             Adress adress = _mapper.Map<Adress>(adressDTO);
 
@@ -41,19 +41,30 @@ namespace MenuAPI.Business
             return adressDTO;
         }
 
-        public async Task<AdressDTO> Update(AdressDTO adressDTO)
+        public async Task<AdressDTO> Update(AdressDTO adressDTO, Guid id)
         {
-            Adress adress = _mapper.Map<Adress>(adressDTO);
+            Adress adress = await _iBaseRepository.Read<Adress>(id);
 
-            adress.UpdatedAt = DateTime.Now;
+            if (adress is not null)
+            {
+                adress = _mapper.Map<Adress>(adressDTO);
 
-            adress = await _iBaseRepository.Update(adress);
+                adress.UpdatedAt = DateTime.Now.ToUniversalTime();
+                adress.Id = id;
 
-            adressDTO = adress is not null ? _mapper.Map<AdressDTO>(adress)
-                : throw new HttpRequestException();
+                adress = await _iBaseRepository.Update(adress);
 
-            return adressDTO;
+                adressDTO = adress is not null ? _mapper.Map<AdressDTO>(adress)
+                    : throw new HttpRequestException();
+
+                return adressDTO;
+            }
+            else
+            {
+                throw new HttpRequestException();
+            }
         }
+
 
         public async Task<AdressDTO> Delete(Guid id)
         {

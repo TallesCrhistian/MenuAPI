@@ -12,7 +12,7 @@ namespace MenuAPI.Entites
 
         public string UrlImage { get; set; }
 
-        public GroupEnum  Group { get; set; }
+        public GroupEnum Group { get; set; }
 
         public Guid EnterpriseId { get; set; }
 

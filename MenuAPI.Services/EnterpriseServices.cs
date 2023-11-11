@@ -4,34 +4,35 @@ using MenuAPI.Data.WorkUnit.Interfaces;
 using MenuAPI.Services.Interfaces;
 using MenuAPI.Shared.DTOs;
 using MenuAPI.Shared.Messages;
-using MenuAPI.Shared.ViewModels.Adress;
+using MenuAPI.Shared.ViewModels.Enterprise;
 using System.Net;
 
 namespace MenuAPI.Services
 {
-    public class AdressServices : IAdressServices
+    public class EnterpriseServices : IEnterpriseServices
     {
         private readonly IWorkUnit _iWorkUnit;
         private readonly IMapper _mapper;
-        private readonly IAdressBusiness _iAdressBusiness;
+        private readonly IEnterpriseBusiness _iEnterpriseBusiness;
 
-        public AdressServices(IWorkUnit workUnit, IMapper mapper, IAdressBusiness iAdressBusiness)
+        public EnterpriseServices(IWorkUnit workUnit, IMapper mapper, IEnterpriseBusiness iEnterpriseBusiness)
         {
             _iWorkUnit = workUnit;
             _mapper = mapper;
-            _iAdressBusiness = iAdressBusiness;
+            _iEnterpriseBusiness = iEnterpriseBusiness;
         }
 
-        public async Task<ServiceResponseDTO<AdressViewModel>> Create(AdressCreateViewModel adressCreateViewModel)
+        public async Task<ServiceResponseDTO<EnterpriseViewModel>> Create(EnterpriseCreateViewModel enterpriseCreateViewModel)
         {
-            ServiceResponseDTO<AdressViewModel> serviceResponseDTO = new ServiceResponseDTO<AdressViewModel>();
+            ServiceResponseDTO<EnterpriseViewModel> serviceResponseDTO = new ServiceResponseDTO<EnterpriseViewModel>();
 
             try
             {
-                AdressDTO adressDTO = _mapper.Map<AdressDTO>(adressCreateViewModel);
-                adressDTO = await _iAdressBusiness.Create(adressDTO);
+                EnterpriseDTO enterpriseDTO = _mapper.Map<EnterpriseDTO>(enterpriseCreateViewModel);
 
-                serviceResponseDTO.GenericData = _mapper.Map<AdressViewModel>(adressDTO);
+                enterpriseDTO = await _iEnterpriseBusiness.Create(enterpriseDTO);
+
+                serviceResponseDTO.GenericData = _mapper.Map<EnterpriseViewModel>(enterpriseDTO);
                 serviceResponseDTO.StatusCode = Convert.ToInt32(HttpStatusCode.Created);
                 serviceResponseDTO.Message = CreatedMessages.Adress;
                 serviceResponseDTO.Sucess = true;
@@ -51,15 +52,15 @@ namespace MenuAPI.Services
             return serviceResponseDTO;
         }
 
-        public async Task<ServiceResponseDTO<AdressViewModel>> Read(Guid id)
+        public async Task<ServiceResponseDTO<EnterpriseViewModel>> Read(Guid id)
         {
-            ServiceResponseDTO<AdressViewModel> serviceResponseDTO = new ServiceResponseDTO<AdressViewModel>();
+            ServiceResponseDTO<EnterpriseViewModel> serviceResponseDTO = new ServiceResponseDTO<EnterpriseViewModel>();
 
             try
             {
-                AdressDTO adressDTO = await _iAdressBusiness.Read(id);
+                EnterpriseDTO enterpriseDTO = await _iEnterpriseBusiness.Read(id);
 
-                serviceResponseDTO.GenericData = _mapper.Map<AdressViewModel>(adressDTO);
+                serviceResponseDTO.GenericData = _mapper.Map<EnterpriseViewModel>(enterpriseDTO);
                 serviceResponseDTO.StatusCode = Convert.ToInt32(HttpStatusCode.OK);
                 serviceResponseDTO.Message = OkMessages.OkMessage;
                 serviceResponseDTO.Sucess = true;
@@ -77,16 +78,17 @@ namespace MenuAPI.Services
             return serviceResponseDTO;
         }
 
-        public async Task<ServiceResponseDTO<AdressViewModel>> Update(AdressUpdateViewModel adressUpdateViewModel, Guid id)
+        public async Task<ServiceResponseDTO<EnterpriseViewModel>> Update(EnterpriseUpdateViewModel enterpriseUpdateViewModel, Guid id)
         {
-            ServiceResponseDTO<AdressViewModel> serviceResponseDTO = new ServiceResponseDTO<AdressViewModel>();
+            ServiceResponseDTO<EnterpriseViewModel> serviceResponseDTO = new ServiceResponseDTO<EnterpriseViewModel>();
 
             try
             {
-                AdressDTO adressDTO = _mapper.Map<AdressDTO>(adressUpdateViewModel);
-                adressDTO = await _iAdressBusiness.Update(adressDTO, id);
+                EnterpriseDTO enterpriseDTO = _mapper.Map<EnterpriseDTO>(enterpriseUpdateViewModel);
 
-                serviceResponseDTO.GenericData = _mapper.Map<AdressViewModel>(adressDTO);
+                enterpriseDTO = await _iEnterpriseBusiness.Update(enterpriseDTO, id);
+
+                serviceResponseDTO.GenericData = _mapper.Map<EnterpriseViewModel>(enterpriseDTO);
                 serviceResponseDTO.StatusCode = Convert.ToInt32(HttpStatusCode.OK);
                 serviceResponseDTO.Message = OkMessages.OkMessage;
                 serviceResponseDTO.Sucess = true;
@@ -106,15 +108,15 @@ namespace MenuAPI.Services
             return serviceResponseDTO;
         }
 
-        public async Task<ServiceResponseDTO<AdressViewModel>> Delete(Guid id)
+        public async Task<ServiceResponseDTO<EnterpriseViewModel>> Delete(Guid id)
         {
-            ServiceResponseDTO<AdressViewModel> serviceResponseDTO = new ServiceResponseDTO<AdressViewModel>();
+            ServiceResponseDTO<EnterpriseViewModel> serviceResponseDTO = new ServiceResponseDTO<EnterpriseViewModel>();
 
             try
             {
-                AdressDTO adressDTO = await _iAdressBusiness.Delete(id);
+                EnterpriseDTO enterpriseDTO = await _iEnterpriseBusiness.Delete(id);
 
-                serviceResponseDTO.GenericData = _mapper.Map<AdressViewModel>(adressDTO);
+                serviceResponseDTO.GenericData = _mapper.Map<EnterpriseViewModel>(enterpriseDTO);
                 serviceResponseDTO.StatusCode = Convert.ToInt32(HttpStatusCode.OK);
                 serviceResponseDTO.Message = OkMessages.OkMessage;
                 serviceResponseDTO.Sucess = true;
