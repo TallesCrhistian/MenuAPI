@@ -3,6 +3,9 @@ using MenuAPI.Business.Interfaces;
 using MenuAPI.Data.Repository.Interfaces;
 using MenuAPI.Entites;
 using MenuAPI.Shared.DTOs;
+using MenuAPI.Shared.Exceptions;
+using MenuAPI.Shared.Messages;
+using System.Net;
 
 namespace MenuAPI.Business
 {
@@ -26,7 +29,7 @@ namespace MenuAPI.Business
             adress = await _iBaseRepository.Create(adress);
 
             adressDTO = (adress is not null) ? _mapper.Map<AdressDTO>(adress)
-                : throw new HttpRequestException();
+                : throw new CustomException(HttpStatusCode.BadRequest, BadRequestMessages.AdressNoCreated, new HttpRequestException());
 
             return adressDTO;
         }
@@ -36,7 +39,7 @@ namespace MenuAPI.Business
             Adress adress = await _iBaseRepository.Read<Adress>(id);
 
             AdressDTO adressDTO = adress is not null ? _mapper.Map<AdressDTO>(adress)
-                : throw new HttpRequestException();
+                : throw new CustomException(HttpStatusCode.NotFound, NotFoundMessages.Adress, new HttpRequestException());
 
             return adressDTO;
         }
@@ -55,13 +58,13 @@ namespace MenuAPI.Business
                 adress = await _iBaseRepository.Update(adress);
 
                 adressDTO = adress is not null ? _mapper.Map<AdressDTO>(adress)
-                    : throw new HttpRequestException();
+                    : throw new CustomException(HttpStatusCode.BadRequest, BadRequestMessages.AdressNoUpdate, new HttpRequestException());
 
                 return adressDTO;
             }
             else
             {
-                throw new HttpRequestException();
+                throw new CustomException(HttpStatusCode.NotFound, NotFoundMessages.Adress, new HttpRequestException());
             }
         }
 
@@ -70,14 +73,11 @@ namespace MenuAPI.Business
         {
             Adress adress = await _iBaseRepository.Read<Adress>(id);
 
-            if (adress is not null)
-            {
-                await _iBaseRepository.Delete<Adress>(id);
-            }
-            else
-            {
-                throw new HttpRequestException();
-            }
+
+            adress = adress is not null ? await _iBaseRepository.Delete<Adress>(id) :
+
+             throw new CustomException(HttpStatusCode.NotFound, NotFoundMessages.Adress, new HttpRequestException());
+
 
             AdressDTO adressDTO = _mapper.Map<AdressDTO>(adress);
 

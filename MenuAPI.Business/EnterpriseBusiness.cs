@@ -3,6 +3,9 @@ using MenuAPI.Business.Interfaces;
 using MenuAPI.Data.Repository.Interfaces;
 using MenuAPI.Entites;
 using MenuAPI.Shared.DTOs;
+using MenuAPI.Shared.Exceptions;
+using MenuAPI.Shared.Messages;
+using System.Net;
 
 namespace MenuAPI.Business
 {
@@ -26,7 +29,7 @@ namespace MenuAPI.Business
             enterprise = await _iBaseRepository.Create(enterprise);
 
             enterpriseDTO = (enterprise is not null) ? _mapper.Map<EnterpriseDTO>(enterprise)
-                : throw new HttpRequestException();
+                : throw new CustomException(HttpStatusCode.BadRequest, BadRequestMessages.EnterpriseNoCreated, new HttpRequestException());
 
             return enterpriseDTO;
         }
@@ -36,7 +39,7 @@ namespace MenuAPI.Business
             Enterprise enterprise = await _iBaseRepository.Read<Enterprise>(id);
 
             EnterpriseDTO enterpriseDTO = enterprise is not null ? _mapper.Map<EnterpriseDTO>(enterprise)
-                : throw new HttpRequestException();
+                : throw new CustomException(HttpStatusCode.NotFound, NotFoundMessages.Enterprise, new HttpRequestException());
 
             return enterpriseDTO;
         }
@@ -56,13 +59,13 @@ namespace MenuAPI.Business
                 enterprise = await _iBaseRepository.Update(enterprise);
 
                 enterpriseDTO = enterprise is not null ? _mapper.Map<EnterpriseDTO>(enterprise)
-                    : throw new HttpRequestException();
+                    : throw new CustomException(HttpStatusCode.BadRequest, BadRequestMessages.EnterpriseNoCreated, new HttpRequestException());
 
                 return enterpriseDTO;
             }
             else
             {
-                throw new HttpRequestException();
+                throw new CustomException(HttpStatusCode.NotFound, NotFoundMessages.Enterprise, new HttpRequestException());
             }
         }
 
@@ -76,7 +79,7 @@ namespace MenuAPI.Business
             }
             else
             {
-                throw new HttpRequestException();
+                throw new CustomException(HttpStatusCode.NotFound, NotFoundMessages.Enterprise, new HttpRequestException());
             }
 
             EnterpriseDTO enterpriseDTO = _mapper.Map<EnterpriseDTO>(enterprise);

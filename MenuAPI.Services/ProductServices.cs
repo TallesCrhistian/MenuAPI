@@ -1,11 +1,10 @@
 ﻿using AutoMapper;
-using MenuAPI.Business;
 using MenuAPI.Business.Interfaces;
 using MenuAPI.Data.WorkUnit.Interfaces;
 using MenuAPI.Services.Interfaces;
 using MenuAPI.Shared.DTOs;
+using MenuAPI.Shared.Exceptions;
 using MenuAPI.Shared.Messages;
-using MenuAPI.Shared.ViewModels.Adress;
 using MenuAPI.Shared.ViewModels.Product;
 using System.Net;
 
@@ -41,6 +40,12 @@ namespace MenuAPI.Services
                 await _iWorkUnit.SaveChangesAsync();
                 await _iWorkUnit.CommitAsync();
             }
+            catch (CustomException ex)
+            {
+                this._iWorkUnit.Rollback();
+
+                serviceResponseDTO = CatchCustom.ServiceResponse<CustomException, ProductViewModel>(ex, ex.StatusCode);
+            }
             catch (Exception ex)
             {
                 _iWorkUnit.Rollback();
@@ -66,6 +71,12 @@ namespace MenuAPI.Services
                 serviceResponseDTO.Message = OkMessages.OkMessage;
                 serviceResponseDTO.Sucess = true;
 
+            }
+            catch (CustomException ex)
+            {
+                this._iWorkUnit.Rollback();
+
+                serviceResponseDTO = CatchCustom.ServiceResponse<CustomException, ProductViewModel>(ex, ex.StatusCode);
             }
             catch (Exception ex)
             {
@@ -96,6 +107,12 @@ namespace MenuAPI.Services
                 await _iWorkUnit.SaveChangesAsync();
                 await _iWorkUnit.CommitAsync();
             }
+            catch (CustomException ex)
+            {
+                this._iWorkUnit.Rollback();
+
+                serviceResponseDTO = CatchCustom.ServiceResponse<CustomException, ProductViewModel>(ex, ex.StatusCode);
+            }
             catch (Exception ex)
             {
                 _iWorkUnit.Rollback();
@@ -123,6 +140,12 @@ namespace MenuAPI.Services
 
                 await _iWorkUnit.SaveChangesAsync();
                 await _iWorkUnit.CommitAsync();
+            }
+            catch (CustomException ex)
+            {
+                this._iWorkUnit.Rollback();
+
+                serviceResponseDTO = CatchCustom.ServiceResponse<CustomException, ProductViewModel>(ex, ex.StatusCode);
             }
             catch (Exception ex)
             {

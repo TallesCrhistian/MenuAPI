@@ -3,6 +3,9 @@ using MenuAPI.Business.Interfaces;
 using MenuAPI.Data.Repository.Interfaces;
 using MenuAPI.Entites;
 using MenuAPI.Shared.DTOs;
+using MenuAPI.Shared.Exceptions;
+using MenuAPI.Shared.Messages;
+using System.Net;
 
 namespace MenuAPI.Business
 {
@@ -26,7 +29,7 @@ namespace MenuAPI.Business
             product = await _iBaseRepository.Create(product);
 
             productDTO = (product is not null) ? _mapper.Map<ProductDTO>(product)
-                : throw new HttpRequestException();
+                : throw new CustomException(HttpStatusCode.BadRequest, BadRequestMessages.ProductNoCreated, new HttpRequestException());
 
             return productDTO;
         }
@@ -36,7 +39,7 @@ namespace MenuAPI.Business
             Product product = await _iBaseRepository.Read<Product>(id);
 
             ProductDTO productDTO = product is not null ? _mapper.Map<ProductDTO>(product)
-                : throw new HttpRequestException();
+                : throw new CustomException(HttpStatusCode.NotFound, NotFoundMessages.Product, new HttpRequestException());
 
             return productDTO;
         }
@@ -55,13 +58,13 @@ namespace MenuAPI.Business
                 product = await _iBaseRepository.Update(product);
 
                 productDTO = product is not null ? _mapper.Map<ProductDTO>(product)
-                    : throw new HttpRequestException();
+                    : throw new CustomException(HttpStatusCode.BadRequest, BadRequestMessages.ProductNoUpdate, new HttpRequestException());
 
                 return productDTO;
             }
             else
             {
-                throw new HttpRequestException();
+                throw new CustomException(HttpStatusCode.NotFound, NotFoundMessages.Product, new HttpRequestException());
             }
         }
 
@@ -75,7 +78,7 @@ namespace MenuAPI.Business
             }
             else
             {
-                throw new HttpRequestException();
+                throw new CustomException(HttpStatusCode.NotFound, NotFoundMessages.Product, new HttpRequestException());
             }
 
             ProductDTO productDTO = _mapper.Map<ProductDTO>(product);
