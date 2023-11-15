@@ -1,0 +1,41 @@
+version: '3.9'
+services:
+  database:
+    image: postgres:15.2
+    container_name: postgres_database_Menu_API
+    ports:
+      - 5431:5432
+    restart: "no"
+    environment:
+      POSTGRES_USER: Menu_API
+      POSTGRES_PASSWORD: Menu_API
+      POSTGRES_DB: Menu_API
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+
+  databaseTest:
+    image: postgres:15.2
+    container_name: postgres_database_Menu_API_Test
+    ports:
+      - 5437:5432
+    restart: "no"
+    environment:
+      POSTGRES_USER: Menu_API_Test
+      POSTGRES_PASSWORD: Menu_API_Test
+      POSTGRES_DB: Menu_API_Test
+    volumes:
+      - postgres_dataTest:/var/lib/postgresql/data
+
+  #MenuAPI:
+  #  image: MenuAPI
+  #  build:
+  #    context: .
+  #    dockerfile: MenuAPI.API/Dockerfile
+  #  depends_on:
+  #    - database
+  #  ports:
+  #    - 8080:80
+
+volumes:
+  postgres_data:
+  postgres_dataTest:
