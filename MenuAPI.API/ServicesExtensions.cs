@@ -84,6 +84,7 @@
         {
             services.AddScoped<IAdressServices, AdressServices>();
             services.AddScoped<IEnterpriseServices, EnterpriseServices>();
+            services.AddScoped<IProductServices, ProductServices>();
 
             return services;
         }
@@ -92,6 +93,7 @@
         {
             services.AddScoped<IAdressBusiness, AdressBusiness>();
             services.AddScoped<IEnterpriseBusiness, EnterpriseBusiness>();
+            services.AddScoped<IProductBusiness, ProductBusiness>();
 
             return services;
         }
