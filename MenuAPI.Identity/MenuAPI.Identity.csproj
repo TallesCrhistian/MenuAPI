@@ -24,7 +24,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\MenuAPI.Services\MenuAPI.Services.csproj" />
     <ProjectReference Include="..\MenuAPI.Shared\MenuAPI.Shared.csproj" />
   </ItemGroup>
 

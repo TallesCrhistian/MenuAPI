@@ -1,5 +1,4 @@
-﻿using MenuAPI.Services;
-using MenuAPI.Services.Interfaces;
+﻿using MenuAPI.Identity.Interfaces;
 using MenuAPI.Shared.DTOs;
 using MenuAPI.Shared.ViewModels.Enterprise;
 using MenuAPI.Shared.ViewModels.User;

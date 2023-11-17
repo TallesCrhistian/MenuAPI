@@ -16,8 +16,8 @@
 
   <ItemGroup>
     <ProjectReference Include="..\MenuAPI.Data\MenuAPI.Data.csproj" />
-	  <ProjectReference Include="..\MenuAPI.Identity\MenuAPI.Identity.csproj" />
     <ProjectReference Include="..\MenuAPI.Entites\MenuAPI.Entites.csproj" />
+    <ProjectReference Include="..\MenuAPI.Identity\MenuAPI.Identity.csproj" />
     <ProjectReference Include="..\MenuAPI.Shared\MenuAPI.Shared.csproj" />
   </ItemGroup>
 

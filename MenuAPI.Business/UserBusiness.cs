@@ -1,8 +1,8 @@
 ﻿using AutoMapper;
 using MenuAPI.Business.Interfaces;
+using MenuAPI.Identity.Interfaces;
 using MenuAPI.Shared.DTOs;
 using Microsoft.AspNetCore.Identity;
-using MenuAPI.Identity.Interface;
 
 namespace MenuAPI.Business
 {

@@ -8,6 +8,8 @@ namespace MenuAPI.Data.Configurations
     {
         public void Configure(EntityTypeBuilder<Enterprise> entityTypeBuilder)
         {
+            entityTypeBuilder.ToTable("menu_enterprise");
+
             entityTypeBuilder.HasKey(x => x.Id);
 
             entityTypeBuilder.Property(a => a.Id)

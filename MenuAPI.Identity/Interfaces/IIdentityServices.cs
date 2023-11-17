@@ -1,7 +1,7 @@
 ﻿using MenuAPI.Shared.DTOs;
 using MenuAPI.Shared.ViewModels.User;
 
-namespace MenuAPI.Services.Interfaces
+namespace MenuAPI.Identity.Interfaces
 {
     public interface IIdentityServices
     {
