@@ -1,10 +1,6 @@
 ﻿namespace MenuAPI.API
 {
-    using KissLog;
-    using KissLog.AspNetCore;
-    using KissLog.CloudListeners.Auth;
-    using KissLog.CloudListeners.RequestLogsListener;
-    using KissLog.Formatters;
+    
     using MenuAPI.Business;
     using MenuAPI.Business.Interfaces;
     using MenuAPI.Data;
@@ -14,6 +10,7 @@
     using MenuAPI.Data.WorkUnit.Interfaces;
     using MenuAPI.Identity.Configuration;
     using MenuAPI.Identity.Data;
+    using MenuAPI.Identity.Data.Repository;
     using MenuAPI.Identity.Interfaces;
     using MenuAPI.Identity.Services;
     using MenuAPI.Services;
@@ -49,6 +46,7 @@
         {
             services.AddScoped<IWorkUnitIdentity, WorkUnitIdentity>();
             services.AddScoped<IIdentityServices, IdentityServices>();
+            services.AddScoped<IUserRepository, UserRepository>();
 
             return services;
         }
@@ -85,6 +83,7 @@
             services.AddScoped<IAdressServices, AdressServices>();
             services.AddScoped<IEnterpriseServices, EnterpriseServices>();
             services.AddScoped<IProductServices, ProductServices>();
+            services.AddScoped<IUserBusiness, UserBusiness>();
 
             return services;
         }
@@ -94,6 +93,7 @@
             services.AddScoped<IAdressBusiness, AdressBusiness>();
             services.AddScoped<IEnterpriseBusiness, EnterpriseBusiness>();
             services.AddScoped<IProductBusiness, ProductBusiness>();
+            services.AddScoped<IUserBusiness, UserBusiness>();
 
             return services;
         }

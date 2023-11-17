@@ -23,4 +23,8 @@
     <ProjectReference Include="..\MenuAPI.Entites\MenuAPI.Entites.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Interfaces\" />
+  </ItemGroup>
+
 </Project>
