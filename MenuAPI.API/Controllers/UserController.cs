@@ -1,7 +1,6 @@
 ﻿using MenuAPI.Services.Interfaces;
 using MenuAPI.Shared.DTOs;
 using MenuAPI.Shared.ViewModels.User;
-using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace MenuAPI.API.Controllers
